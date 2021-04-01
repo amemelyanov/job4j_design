@@ -58,5 +58,18 @@ public class UserStoreTest {
         assertThat(userStore.findById("id3"), is(user3));
         assertNull(userStore.findById("id4"));
     }
-
+    @Test
+    public void testFindIndexById() {
+        UserStore userStore = new UserStore();
+        User user1 = new User("id1");
+        User user2 = new User("id2");
+        User user3 = new User("id3");
+        userStore.add(user1);
+        userStore.add(user2);
+        userStore.add(user3);
+        assertThat(userStore.findIndexById("id1"), is(0));
+        assertThat(userStore.findIndexById("id2"), is(1));
+        assertThat(userStore.findIndexById("id3"), is(2));
+        assertThat(userStore.findIndexById("id4"), is(-1));
+    }
 }

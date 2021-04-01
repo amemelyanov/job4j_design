@@ -25,6 +25,11 @@ public class UserStore implements Store<User> {
     }
 
     @Override
+    public int findIndexById(String id) {
+        return store.findIndexById(id);
+    }
+
+    @Override
     public String get(int index) {
         return store.get(index);
     }

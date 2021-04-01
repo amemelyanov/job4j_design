@@ -10,5 +10,7 @@ public interface Store<T extends Base> {
 
     T findById(String id);
 
+    int findIndexById(String id);
+
     String get(int index);
 }
