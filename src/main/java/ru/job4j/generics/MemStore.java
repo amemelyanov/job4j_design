@@ -49,6 +49,7 @@ public final class MemStore<T extends Base> implements Store<T> {
         for (int i = 0; i < mem.size(); i++) {
             if (mem.get(i).getId().equals(id)) {
                 rsl = i;
+                break;
             }
         }
         return rsl;
