@@ -3,6 +3,7 @@ package ru.job4j.collection.set;
 import ru.job4j.collection.SimpleArray;
 
 import java.util.Iterator;
+import java.util.Objects;
 
 public class SimpleSet<T> implements Set<T> {
 
@@ -38,9 +39,7 @@ public class SimpleSet<T> implements Set<T> {
 
     private int indexByValue(T value) {
         for (int i = 0; i < set.getSize(); i++) {
-            if (set.get(i) == value) {
-                return i;
-            } else if (set.get(i) != null && set.get(i).equals(value)) {
+            if (Objects.equals(set.get(i), value)) {
                 return i;
             }
         }
