@@ -8,16 +8,17 @@ public class SimpleHashMap<K, V> implements Map<K, V> {
     private float threshold;
     private int size;
     private int capacity;
+    private final float loadFactor = 0.75f;
 
     public SimpleHashMap() {
          table = new Node[16];
-         threshold = table.length * 0.75f;
+         threshold = table.length * loadFactor;
     }
 
     public SimpleHashMap(int capacity) {
         this.capacity = capacity;
         table = new Node[capacity];
-        threshold = table.length * 0.75f;
+        threshold = table.length * loadFactor;
     }
 
     public int getCapacity() {
@@ -51,7 +52,7 @@ public class SimpleHashMap<K, V> implements Map<K, V> {
     public V get(K key) {
         int index = hash(key) % table.length;
         Node<K, V> current = table[index];
-        if (Objects.equals(current.getKey(), key)) {
+        if (current != null && Objects.equals(current.getKey(), key)) {
             return current.getValue();
         }
         return null;
@@ -62,7 +63,7 @@ public class SimpleHashMap<K, V> implements Map<K, V> {
         int hash = hash(key);
         int index = hash % table.length;
         Node<K, V> current = table[index];
-        if (Objects.equals(current.getKey(), key)) {
+        if (current != null && Objects.equals(current.getKey(), key)) {
             table[index] = null;
             size--;
             modCount++;
