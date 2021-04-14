@@ -2,6 +2,7 @@ package ru.job4j.io;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Analizy {
     public void unavailable(String source, String target) {
@@ -28,17 +29,21 @@ public class Analizy {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        writeLog(rsl, target);
+    }
 
+    public void writeLog(List<String> listToWrite, String target) {
         try (PrintWriter out = new PrintWriter(
                 new BufferedOutputStream(
                         new FileOutputStream(target)))) {
-            for (int i = 0; i < rsl.size(); i += 2) {
-                out.printf("%s;%s%n", rsl.get(i), rsl.get(i + 1));
+            for (int i = 0; i < listToWrite.size(); i += 2) {
+                out.printf("%s;%s%n", listToWrite.get(i), listToWrite.get(i + 1));
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
     public static void main(String[] args) {
         Analizy analizy = new Analizy();
         analizy.unavailable("./data/source.log", "./data/target.log");
