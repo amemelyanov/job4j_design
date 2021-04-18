@@ -16,7 +16,7 @@ public class EchoServer {
                     while (in.ready()) {
                         str = in.readLine();
                         if (str.contains("=") && str.split("=")[1].startsWith("Bye")) {
-                            return;
+                            server.close();
                         }
                         System.out.println(str);
                     }
