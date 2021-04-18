@@ -19,17 +19,18 @@ public class ArgsName {
             if (!arg.contains("=")) {
                 continue;
             }
-            if (!validate(arg)) {
+            String[] argArr = arg.split("=");
+            if (!validate(argArr)) {
                 throw new IllegalArgumentException();
             }
-                values.put(arg.split("=")[0].substring(1), arg.split("=")[1]);
+            values.put(argArr[0].substring(1), argArr[1]);
         }
     }
 
-    private boolean validate(String arg) {
-        return arg.startsWith("-")
-                && arg.split("=").length > 1
-                && arg.split("=")[0].substring(1).length() != 0;
+    private boolean validate(String[] argArr) {
+        return argArr[0].startsWith("-")
+                && argArr.length > 1
+                && argArr[0].substring(1).length() != 0;
     }
 
     public static ArgsName of(String[] args) {
