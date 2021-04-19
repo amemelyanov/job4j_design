@@ -23,40 +23,44 @@ public class ConsoleChat {
         String userInput = "";
         String botAnswer;
         boolean silence = true;
+        List<String> log = new ArrayList<>();
+        Scanner in = new Scanner(System.in);
         while (!userInput.equals(OUT)) {
-            try (BufferedWriter out = new BufferedWriter(
-                    new FileWriter(path, Charset.forName("WINDOWS-1251"), true))) {
-            Scanner in = new Scanner(System.in);
             userInput = in.next();
             switch (userInput) {
                 case OUT:
-                    out.write(String.format("%s%n", userInput));
+                      log.add(String.format("%s%n", userInput));
                     break;
                 case STOP:
                     silence = false;
-                    out.write(String.format("%s%n", userInput));
+                    log.add(String.format("%s%n", userInput));
                     break;
                 case CONTINUE:
                     silence = true;
                     botAnswer = phrases.get((int) (Math.random() * phrases.size()));
-                    out.write(String.format("%s%n", userInput));
-                    out.write(String.format("%s%n", botAnswer));
+                    log.add(String.format("%s%n", userInput));
+                    log.add(String.format("%s%n", botAnswer));
                     System.out.println(botAnswer);
                     break;
                 default:
                     if (silence) {
                         botAnswer = phrases.get((int) (Math.random() * phrases.size()));
-                        out.write(String.format("%s%n", userInput));
-                        out.write(String.format("%s%n", botAnswer));
+                        log.add(String.format("%s%n", userInput));
+                        log.add(String.format("%s%n", botAnswer));
                         System.out.println(botAnswer);
                     } else {
-                        out.write(String.format("%s%n", userInput));
+                        log.add(String.format("%s%n", userInput));
                     }
                     break;
                 }
-            } catch (IOException e) {
-                e.printStackTrace();
+        }
+        try (BufferedWriter out = new BufferedWriter(
+                new FileWriter(path, Charset.forName("WINDOWS-1251"), true))) {
+            for (String str : log) {
+                out.write(str);
             }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
