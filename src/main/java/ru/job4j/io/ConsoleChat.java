@@ -54,6 +54,10 @@ public class ConsoleChat {
                     break;
                 }
         }
+        writeLog(log);
+    }
+
+    private void writeLog(List<String> log) {
         try (BufferedWriter out = new BufferedWriter(
                 new FileWriter(path, Charset.forName("WINDOWS-1251"), true))) {
             for (String str : log) {
