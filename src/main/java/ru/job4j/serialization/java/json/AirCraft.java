@@ -1,16 +1,34 @@
 package ru.job4j.serialization.java.json;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
+import javax.xml.bind.annotation.*;
+import java.io.StringReader;
+import java.io.StringWriter;
 import java.util.Arrays;
 
+@XmlRootElement(name = "aircraft")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class AirCraft {
+    @XmlAttribute
     boolean isPassenger;
+
+    @XmlAttribute
     int rangeOfFlight;
+
+    @XmlAttribute
     String modelName;
+
+    @XmlElement(name = "engine")
     Engine engine;
+
+    @XmlElementWrapper(name = "subModels")
+    @XmlElement(name = "subModel")
     String[] subModels;
+
+    public AirCraft() { }
 
     public AirCraft(boolean isPassenger, int rangeOfFlight, String modelName, Engine engine, String[] subModels) {
         this.isPassenger = isPassenger;
@@ -32,8 +50,13 @@ public class AirCraft {
     }
 
     public static class Engine {
+        @XmlAttribute
         String name;
+
+        @XmlAttribute
         int horsePower;
+
+        public Engine() { }
 
         public Engine(String name, int horsePower) {
             this.name = name;
@@ -50,16 +73,27 @@ public class AirCraft {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws JAXBException {
         String[] subModels = {"A318", "A319", "A321"};
         AirCraft airCraft = new AirCraft(true, 6000,
                 "A320", new Engine("CFM", 105900), subModels);
 
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String airCraftJSON = gson.toJson(airCraft);
-        System.out.println(airCraftJSON);
+        JAXBContext context = JAXBContext.newInstance(AirCraft.class);
+        Marshaller marshaller = context.createMarshaller();
+        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+        String result = "";
+        try (StringWriter writer = new StringWriter()) {
+            marshaller.marshal(airCraft, writer);
+            result = writer.getBuffer().toString();
+            System.out.println(result);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-        AirCraft airCraftFromJSON = gson.fromJson(airCraftJSON, AirCraft.class);
-        System.out.println(airCraftFromJSON);
+        Unmarshaller unmarshaller = context.createUnmarshaller();
+        try (StringReader reader = new StringReader(result)) {
+            AirCraft xmlAirCraft = (AirCraft) unmarshaller.unmarshal(reader);
+            System.out.println(xmlAirCraft);
+        }
     }
 }
