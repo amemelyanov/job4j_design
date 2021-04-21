@@ -1,0 +1,9 @@
+<?xml version="1.1" encoding="UTF-8" ?>
+<aircraft isPassenger="true" rangeOfFlight="6000" modelName="A320">
+	<engine name="CFM" horsePower="105900"/>
+	<subModels>
+		<subModel>A318</subModel>
+		<subModel>A319</subModel>
+		<subModel>A320</subModel>
+	</subModels>
+</aircraft>
