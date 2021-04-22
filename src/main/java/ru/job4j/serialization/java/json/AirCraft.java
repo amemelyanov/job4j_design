@@ -1,5 +1,8 @@
 package ru.job4j.serialization.java.json;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
@@ -7,7 +10,9 @@ import javax.xml.bind.Unmarshaller;
 import javax.xml.bind.annotation.*;
 import java.io.StringReader;
 import java.io.StringWriter;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 @XmlRootElement(name = "aircraft")
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -27,6 +32,26 @@ public class AirCraft {
     @XmlElementWrapper(name = "subModels")
     @XmlElement(name = "subModel")
     private String[] subModels;
+
+    public boolean isPassenger() {
+        return isPassenger;
+    }
+
+    public int getRangeOfFlight() {
+        return rangeOfFlight;
+    }
+
+    public String getModelName() {
+        return modelName;
+    }
+
+    public Engine getEngine() {
+        return engine;
+    }
+
+    public String[] getSubModels() {
+        return subModels;
+    }
 
     public AirCraft() { }
 
@@ -56,6 +81,14 @@ public class AirCraft {
         @XmlAttribute
         private int horsePower;
 
+        public String getName() {
+            return name;
+        }
+
+        public int getHorsePower() {
+            return horsePower;
+        }
+
         public Engine() { }
 
         public Engine(String name, int horsePower) {
@@ -75,25 +108,26 @@ public class AirCraft {
 
     public static void main(String[] args) throws JAXBException {
         String[] subModels = {"A318", "A319", "A321"};
-        AirCraft airCraft = new AirCraft(true, 6000,
+        final AirCraft airCraft = new AirCraft(true, 6000,
                 "A320", new Engine("CFM", 105900), subModels);
 
-        JAXBContext context = JAXBContext.newInstance(AirCraft.class);
-        Marshaller marshaller = context.createMarshaller();
-        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-        String result = "";
-        try (StringWriter writer = new StringWriter()) {
-            marshaller.marshal(airCraft, writer);
-            result = writer.getBuffer().toString();
-            System.out.println(result);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        JSONObject jsonEngine = new JSONObject("{\"name\":\"CFM\", \"horsePower\":\"105900\"}");
 
-        Unmarshaller unmarshaller = context.createUnmarshaller();
-        try (StringReader reader = new StringReader(result)) {
-            AirCraft xmlAirCraft = (AirCraft) unmarshaller.unmarshal(reader);
-            System.out.println(xmlAirCraft);
-        }
+        List<String> list = new ArrayList<>();
+        list.add("A318");
+        list.add("A319");
+        list.add("A321");
+        JSONArray jsonSubmodels = new JSONArray(list);
+        
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("isPassenger", airCraft.isPassenger());
+        jsonObject.put("rangeOfFlight", airCraft.getRangeOfFlight());
+        jsonObject.put("modelName", airCraft.getModelName());
+        jsonObject.put("engine", jsonEngine);
+        jsonObject.put("subModels", jsonSubmodels);
+
+        System.out.println(jsonObject);
+
+        System.out.println(new JSONObject(airCraft).toString());
     }
 }
