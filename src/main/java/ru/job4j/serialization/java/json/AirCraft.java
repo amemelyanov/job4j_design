@@ -13,20 +13,20 @@ import java.util.Arrays;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class AirCraft {
     @XmlAttribute
-    boolean isPassenger;
+    private boolean isPassenger;
 
     @XmlAttribute
-    int rangeOfFlight;
+    private int rangeOfFlight;
 
     @XmlAttribute
-    String modelName;
+    private String modelName;
 
     @XmlElement(name = "engine")
-    Engine engine;
+    private Engine engine;
 
     @XmlElementWrapper(name = "subModels")
     @XmlElement(name = "subModel")
-    String[] subModels;
+    private String[] subModels;
 
     public AirCraft() { }
 
@@ -51,10 +51,10 @@ public class AirCraft {
 
     public static class Engine {
         @XmlAttribute
-        String name;
+        private String name;
 
         @XmlAttribute
-        int horsePower;
+        private int horsePower;
 
         public Engine() { }
 
