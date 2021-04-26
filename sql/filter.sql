@@ -31,26 +31,50 @@ insert into product (name, type_id, expired_date, price) values ('Скумбри
 insert into product (name, type_id, expired_date, price) values ('Селедка соленая', 5, '2021-10-12', 200);
 
 --1. Написать запрос получение всех продуктов с типом "СЫР"
-select p.name, p.expired_date, p.price, t.name as type from product as p join type as t on p.type_id = t.id where t.name = 'СЫР';
+select p.name, p.expired_date, p.price, t.name as type 
+from product as p 
+join type as t on p.type_id = t.id 
+where t.name = 'СЫР';
 
 --2. Написать запрос получения всех продуктов, у кого в имени есть слово "мороженное"
-select p.name, p.expired_date, p.price, t.name as type from product as p join type as t on p.type_id = t.id where p.name like '%мороженное%';
+select p.name, p.expired_date, p.price, t.name as type 
+from product as p 
+join type as t on p.type_id = t.id 
+where p.name like '%мороженное%';
 
 --3. Написать запрос, который выводит все продукты, срок годности которых заканчивается в следующем месяце.
-select p.name, p.expired_date, p.price, t.name as type from product as p join type as t on p.type_id = t.id 
+select p.name, p.expired_date, p.price, t.name as type 
+from product as p 
+join type as t on p.type_id = t.id 
 where extract(month from p.expired_date) = extract(month from (CURRENT_DATE + INTERVAL '1 month'));
 
 --4. Написать запрос, который выводит самый дорогой продукт.
-select p.name, p.expired_date, p.price, t.name as type from product as p join type as t on p.type_id = t.id order by price desc limit 1;
+select p.name, p.expired_date, p.price, t.name as type 
+from product as p 
+join type as t on p.type_id = t.id 
+order by price 
+desc limit 1;
 
 --5. Написать запрос, который выводит для каждого типа количество продуктов к нему принадлежащих. В виде имя_типа, количество
-select t.name as "Имя_типа", count(p.name) as "Количество" from product as p join type as t on p.type_id = t.id group by t.name;
+select t.name as "Имя_типа", count(p.name) as "Количество" 
+from product as p 
+join type as t on p.type_id = t.id 
+group by t.name;
 
 --6. Написать запрос получение всех продуктов с типом "СЫР" и "МОЛОКО"
-select p.name, p.expired_date, p.price, t.name as type from product as p join type as t on p.type_id = t.id where t.name in ('СЫР', 'МОЛОКО');
+select p.name, p.expired_date, p.price, t.name as type 
+from product as p 
+join type as t on p.type_id = t.id 
+where t.name in ('СЫР', 'МОЛОКО');
 
 --7. Написать запрос, который выводит тип продуктов, которых осталось меньше 10 штук.  
-select t.name as "Имя_типа", count(p.name) as "Количество" from product as p join type as t on p.type_id = t.id group by t.name having count(p.name) < 10;
+select t.name as "Имя_типа", count(p.name) as "Количество" 
+from product as p 
+join type as t on p.type_id = t.id 
+group by t.name 
+having count(p.name) < 10;
 
 --8. Вывести все продукты и их тип.
-select p.name, p.expired_date, p.price, t.name as type from product as p join type as t on p.type_id = t.id;
+select p.name, p.expired_date, p.price, t.name as type 
+from product as p 
+join type as t on p.type_id = t.id;
