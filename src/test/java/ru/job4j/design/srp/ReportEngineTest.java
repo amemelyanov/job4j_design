@@ -13,8 +13,7 @@ public class ReportEngineTest {
         Calendar now = Calendar.getInstance();
         Employee worker = new Employee("Ivan", now, now, 100);
         store.add(worker);
-        ReportFactory reportFactory = ReportEngine.createReportFactoryBySpeciality("old");
-        Report report = reportFactory.createReport();
+        Report report = ReportEngine.createReportFactoryBySpeciality("old");
         StringBuilder expect = new StringBuilder()
                 .append("Name; Hired; Fired; Salary;")
                 .append(System.lineSeparator())
@@ -32,8 +31,7 @@ public class ReportEngineTest {
         Calendar now = Calendar.getInstance();
         Employee worker = new Employee("Ivan", now, now, 100);
         store.add(worker);
-        ReportFactory reportFactory = ReportEngine.createReportFactoryBySpeciality("html");
-        Report report = reportFactory.createReport();
+        Report report = ReportEngine.createReportFactoryBySpeciality("html");
         StringBuilder expect = new StringBuilder()
             .append("<!DOCTYPE html>")
             .append("<html><head><title></title></head><body>")
@@ -54,8 +52,7 @@ public class ReportEngineTest {
         Employee worker2 = new Employee("Petr", now, now, 200);
         store.add(worker1);
         store.add(worker2);
-        ReportFactory reportFactory = ReportEngine.createReportFactoryBySpeciality("hr");
-        Report report = reportFactory.createReport();
+        Report report = ReportEngine.createReportFactoryBySpeciality("hr");
         StringBuilder expect = new StringBuilder()
                 .append("Name; Salary;")
                 .append(System.lineSeparator())
@@ -78,8 +75,7 @@ public class ReportEngineTest {
         Calendar now = Calendar.getInstance();
         Employee worker = new Employee("Ivan", now, now, 100);
         store.add(worker);
-        ReportFactory reportFactory = ReportEngine.createReportFactoryBySpeciality("counting");
-        Report report = reportFactory.createReport();
+        Report report = ReportEngine.createReportFactoryBySpeciality("counting");
         StringBuilder expect = new StringBuilder()
                 .append("Name; Hired; Fired; Salary in dollars;")
                 .append(System.lineSeparator())

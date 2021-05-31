@@ -1,15 +1,15 @@
 package ru.job4j.design.srp;
 
 public class ReportEngine {
-    static ReportFactory createReportFactoryBySpeciality(String speciality) {
+    static Report createReportFactoryBySpeciality(String speciality) {
         if (speciality.equalsIgnoreCase("html")) {
-            return new ReportHTMLFactory();
+            return new ReportHTML();
         } else if (speciality.equalsIgnoreCase("hr")) {
-            return new ReportHRFactory();
+            return new ReportHR();
         } else if (speciality.equalsIgnoreCase("old")) {
-            return new ReportOldFactory();
+            return new ReportOld();
         } else if (speciality.equalsIgnoreCase("counting")) {
-            return new ReportCountingFactory();
+            return new ReportCounting();
         } else {
             throw new RuntimeException(speciality + " is unknown speciality");
         }
