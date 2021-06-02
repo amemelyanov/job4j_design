@@ -10,6 +10,10 @@ public class ReportEngine {
             return new ReportOld();
         } else if (speciality.equalsIgnoreCase("counting")) {
             return new ReportCounting();
+        } else if (speciality.equalsIgnoreCase("json")) {
+            return new ReportJSON();
+        } else if (speciality.equalsIgnoreCase("xml")) {
+            return new ReportXML();
         } else {
             throw new RuntimeException(speciality + " is unknown speciality");
         }

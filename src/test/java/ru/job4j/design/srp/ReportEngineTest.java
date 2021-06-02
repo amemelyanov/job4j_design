@@ -3,6 +3,9 @@ package ru.job4j.design.srp;
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.Matchers.is;
 import org.junit.Test;
+
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class ReportEngineTest {
@@ -84,6 +87,39 @@ public class ReportEngineTest {
                 .append(worker.getFired()).append(";")
                 .append(String.format("%.2f", worker.getSalary() / 75)).append(";")
                 .append(System.lineSeparator());
+        assertThat(report.generate(em -> true, store), is(expect.toString()));
+    }
+
+    @Test
+    public void whenXMLGenerated() {
+        MemStore store = new MemStore();
+        SimpleDateFormat cFormatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
+        Calendar now = Calendar.getInstance();
+        Employee worker = new Employee("Ivan", now, now, 100);
+        store.add(worker);
+        Report report = ReportEngine.createReportFactoryBySpeciality("xml");
+        StringBuilder expect = new StringBuilder()
+                .append("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>")
+                .append("<employee name=\"").append(worker.getName()).append("\" ")
+                .append("hired=\"").append(cFormatter.format(worker.getHired().getTime())).append("\" ")
+                .append("fired=\"").append(cFormatter.format(worker.getFired().getTime())).append("\" ")
+                .append("salary=\"").append(worker.getSalary()).append("\"/>");
+        assertThat(report.generate(em -> true, store), is(expect.toString()));
+    }
+
+    @Test
+    public void whenJSONGenerated() {
+        MemStore store = new MemStore();
+        Calendar now = Calendar.getInstance();
+        DecimalFormat decimalFormat = new DecimalFormat("0.##");
+        Employee worker = new Employee("Ivan", now, now, 100);
+        store.add(worker);
+        Report report = ReportEngine.createReportFactoryBySpeciality("json");
+        StringBuilder expect = new StringBuilder()
+                .append("{\"fired\":\"").append(worker.getFired().getTime()).append("\",")
+                .append("\"name\":\"").append(worker.getName()).append("\",")
+                .append("\"hired\":\"").append(worker.getHired().getTime()).append("\",")
+                .append("\"salary\":").append(decimalFormat.format(worker.getSalary())).append("}");
         assertThat(report.generate(em -> true, store), is(expect.toString()));
     }
 }
