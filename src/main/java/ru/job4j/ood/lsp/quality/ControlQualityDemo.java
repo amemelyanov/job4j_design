@@ -1,14 +1,21 @@
 package ru.job4j.ood.lsp.quality;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 public class ControlQualityDemo {
     public static void main(String[] args) {
+        List<Storage> storageList = new ArrayList<>();
         Warehouse warehouse = new Warehouse();
         Shop shop = new Shop();
         Trash trash = new Trash();
-        ControlQuality controlQuality = new ControlQuality(warehouse, shop, trash);
+        storageList.add(warehouse);
+        storageList.add(shop);
+        storageList.add(trash);
+
+        ControlQuality controlQuality = new ControlQuality(storageList);
         Food fish1 = new Fish("Herring", new GregorianCalendar(2021, Calendar.AUGUST, 15).getTime(),
                 new GregorianCalendar(2021, Calendar.JUNE, 6).getTime(),
                 100, 10, "sea", 1.2);
@@ -27,8 +34,8 @@ public class ControlQualityDemo {
         controlQuality.control(meat1);
         controlQuality.control(meat2);
 
-        System.out.println(warehouse.toString());
-        System.out.println(shop.toString());
-        System.out.println(trash.toString());
+        System.out.println(warehouse);
+        System.out.println(shop);
+        System.out.println(trash);
     }
 }

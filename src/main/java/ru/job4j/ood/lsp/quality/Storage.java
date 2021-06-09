@@ -1,5 +1,6 @@
 package ru.job4j.ood.lsp.quality;
 
 public interface Storage {
-    public void add(Food food);
+    void add(Food food);
+    boolean accept(Food food);
 }
