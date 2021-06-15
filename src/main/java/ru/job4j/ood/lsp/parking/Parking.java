@@ -1,5 +1,6 @@
 package ru.job4j.ood.lsp.parking;
 
 public interface Parking {
-    boolean parkTheCar(Car car);
+    boolean park(Car car);
+    int getFreePlacesForType(String typePlaces);
 }
