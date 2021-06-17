@@ -7,7 +7,7 @@ import static org.junit.Assert.*;
 public class ParkingTest {
     @Test
     public void whenPassengerCarParking() {
-        Parking parking = new PassengerAndTruckParking(5, 5);
+        CarTruckParking parking = new PassengerAndTruckParking(5, 5);
         Car passengerCar = new PassengerCar("toyota");
         assertTrue(parking.park(passengerCar));
         assertThat(parking.getFreePlacesForType("passenger"), is(4));
@@ -16,7 +16,7 @@ public class ParkingTest {
 
     @Test
     public void whenTruckParking() {
-        Parking parking = new PassengerAndTruckParking(5, 5);
+        CarTruckParking parking = new PassengerAndTruckParking(5, 5);
         Car truck = new Truck(2, "ford");
         assertTrue(parking.park(truck));
         assertThat(parking.getFreePlacesForType("passenger"), is(5));
@@ -25,7 +25,7 @@ public class ParkingTest {
 
     @Test
     public void whenOnlyPassengerCars() {
-        Parking parking = new PassengerAndTruckParking(1, 1);
+        CarTruckParking parking = new PassengerAndTruckParking(1, 1);
         Car passengerCar1 = new PassengerCar("toyota");
         Car passengerCar2 = new PassengerCar("nissan");
         assertTrue(parking.park(passengerCar1));
@@ -36,7 +36,7 @@ public class ParkingTest {
 
     @Test
     public void whenOnlyTrucks() {
-        Parking parking = new PassengerAndTruckParking(1, 2);
+        CarTruckParking parking = new PassengerAndTruckParking(1, 2);
         Car truck1 = new Truck(2, "toyota");
         Car truck2 = new Truck(2, "nissan");
         Car truck3 = new Truck(2, "ford");
@@ -49,7 +49,7 @@ public class ParkingTest {
 
     @Test
     public void whenPlacesIsZero() {
-        Parking parking = new PassengerAndTruckParking(0, 0);
+        CarTruckParking parking = new PassengerAndTruckParking(0, 0);
         Car passengerCar = new PassengerCar("toyota");
         Car truck = new Truck(2, "nissan");
         assertFalse(parking.park(passengerCar));
