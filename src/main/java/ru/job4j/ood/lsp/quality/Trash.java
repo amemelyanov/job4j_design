@@ -22,10 +22,6 @@ public class Trash implements Storage {
         return levelOfQuality > 100;
     }
 
-    public List<Food> getListTrash() {
-        return listTrash;
-    }
-
     private double getLevelOfQuality(Food food) {
         long totalLifeInDays = (food.expiryDate.getTime() - food.createDate.getTime()) / 1000 / 60 / 60 / 24;
         if (totalLifeInDays < 0) {
@@ -38,5 +34,15 @@ public class Trash implements Storage {
     @Override
     public String toString() {
         return "Trash{" + "listTrash=" + listTrash + '}';
+    }
+
+    @Override
+    public List<Food> getStorageList() {
+        return listTrash;
+    }
+
+    @Override
+    public boolean delete(Food food) {
+        return listTrash.remove(food);
     }
 }

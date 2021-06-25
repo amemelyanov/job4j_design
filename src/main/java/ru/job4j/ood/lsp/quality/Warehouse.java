@@ -22,10 +22,6 @@ public class Warehouse implements Storage {
         return levelOfQuality < 25;
     }
 
-    public List<Food> getListWarehouse() {
-        return listWarehouse;
-    }
-
     private double getLevelOfQuality(Food food) {
         long totalLifeInDays = (food.expiryDate.getTime() - food.createDate.getTime()) / 1000 / 60 / 60 / 24;
         if (totalLifeInDays < 0) {
@@ -38,5 +34,15 @@ public class Warehouse implements Storage {
     @Override
     public String toString() {
         return "Warehouse{" + "listWarehouse=" + listWarehouse + '}';
+    }
+
+    @Override
+    public List<Food> getStorageList() {
+        return listWarehouse;
+    }
+
+    @Override
+    public boolean delete(Food food) {
+        return listWarehouse.remove(food);
     }
 }

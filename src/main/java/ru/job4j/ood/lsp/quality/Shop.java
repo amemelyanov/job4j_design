@@ -11,10 +11,6 @@ public class Shop implements Storage {
         listShop = new ArrayList<>();
     }
 
-    public List<Food> getListShop() {
-        return listShop;
-    }
-
     @Override
     public void add(Food food) {
         double levelOfQuality = getLevelOfQuality(food);
@@ -44,5 +40,15 @@ public class Shop implements Storage {
     @Override
     public String toString() {
         return "Shop{" + "listShop=" + listShop + '}';
+    }
+
+    @Override
+    public List<Food> getStorageList() {
+        return listShop;
+    }
+
+    @Override
+    public boolean delete(Food food) {
+        return listShop.remove(food);
     }
 }
