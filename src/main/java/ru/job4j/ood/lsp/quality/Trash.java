@@ -42,7 +42,7 @@ public class Trash implements Storage {
     }
 
     @Override
-    public boolean delete(Food food) {
-        return listTrash.remove(food);
+    public void clear() {
+        listTrash.clear();
     }
 }

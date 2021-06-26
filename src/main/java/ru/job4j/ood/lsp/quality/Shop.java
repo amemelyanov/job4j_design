@@ -48,7 +48,7 @@ public class Shop implements Storage {
     }
 
     @Override
-    public boolean delete(Food food) {
-        return listShop.remove(food);
+    public void clear() {
+        listShop.clear();
     }
 }

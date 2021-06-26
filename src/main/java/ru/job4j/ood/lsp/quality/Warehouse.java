@@ -42,7 +42,7 @@ public class Warehouse implements Storage {
     }
 
     @Override
-    public boolean delete(Food food) {
-        return listWarehouse.remove(food);
+    public void clear() {
+        listWarehouse.clear();
     }
 }
