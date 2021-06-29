@@ -5,6 +5,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.regex.Pattern;
 
 
 public class Find {
@@ -13,16 +14,19 @@ public class Find {
         Predicate<Path> rsl;
         String type = args.get("t");
         String name = args.get("n");
+        Pattern pattern;
         switch (type) {
             case "mask":
-                rsl = p -> p.toFile().getName().matches(name.replace("?", ".?")
-                    .replace("*", ".*"));
+                pattern = Pattern.compile(name.replace("?", ".?")
+                        .replace("*", ".*"));
+                rsl = p -> pattern.matcher(p.toFile().getName()).find();
                 break;
             case "name":
                 rsl = p -> p.toFile().getName().equals(name);
                 break;
             case "regex":
-                rsl = p -> p.toFile().getName().matches(name);
+                pattern = Pattern.compile(name);
+                rsl = p -> pattern.matcher(p.toFile().getName()).find();
                 break;
             default:
                 rsl = null;
