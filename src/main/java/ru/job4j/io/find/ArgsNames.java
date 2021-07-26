@@ -34,7 +34,7 @@ public class ArgsNames {
 
     private boolean validate(String[] argArr) {
         boolean rsl = (argArr[0].equals("-d") || argArr[0].equals("-n")
-                || argArr[0].equals("-t") || argArr[0].equals("-o")) || argArr.length > 1;
+                || argArr[0].equals("-t") || argArr[0].equals("-o")) && argArr.length > 1;
         if (argArr[0].equals("-t") && !(argArr[1].equals("regex")
                 || argArr[1].equals("mask") || argArr[1].equals("name"))) {
                 rsl = false;
