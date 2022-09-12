@@ -6,25 +6,25 @@ public class PasswordValidator {
 
     public static String validate(String password) {
         if (password == null) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("Пароль не должен быть null");
         }
         if (password.length() < 8 || password.length() > 32) {
-            return "Длина пароля должна находится в диапазоне [8, 32]";
+            throw new IllegalArgumentException("Длина пароля должна находится в диапазоне [8, 32]");
         }
         if (!isContainsUpperCaseChar(password)) {
-            return "Пароль должен содержать хотя бы один символ в верхнем регистре";
+            throw new IllegalArgumentException("Пароль должен содержать хотя бы один символ в верхнем регистре");
         }
         if (!isContainsLowercaseChar(password)) {
-            return "Пароль должен содержать хотя бы один символ в нижнем регистре";
+            throw new IllegalArgumentException("Пароль должен содержать хотя бы один символ в нижнем регистре");
         }
         if (!isContainsDigit(password)) {
-            return "Пароль должен содержать хотя бы одну цифру";
+            throw new IllegalArgumentException("Пароль должен содержать хотя бы одну цифру");
         }
         if (!isContainsSpecialChar(password)) {
-            return "Пароль должен содержать хотя бы один спец. символ (не цифра и не буква)";
+            throw new IllegalArgumentException("Пароль должен содержать хотя бы один спец. символ (не цифра и не буква)");
         }
         if (!isNotContainsSubstring(password)) {
-            return "Пароль не должен содержать подстроки: qwerty, 12345, password, admin, user";
+            throw new IllegalArgumentException("Пароль не должен содержать подстроки: qwerty, 12345, password, admin, user");
         }
         return "Valid";
     }
