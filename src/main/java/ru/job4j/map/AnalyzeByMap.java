@@ -47,7 +47,7 @@ public class AnalyzeByMap {
 
     public static Label bestStudent(List<Pupil> pupils) {
         if (pupils.size() == 0) {
-            throw new  IllegalArgumentException();
+            throw new  IllegalArgumentException("Список учеников не должен быть пуст");
         }
         List<Label> result = new ArrayList<>();
         for (Pupil pupil : pupils) {

@@ -6,8 +6,18 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.offset;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 class AnalyzeByMapTest {
+
+    @Test
+    public void whenFindBestStudentAndPupilsEmpty() {
+        List<Pupil> pupils = List.of();
+        assertThatThrownBy(() -> AnalyzeByMap.bestStudent(pupils))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("Список учеников не должен быть пуст");
+    }
+
     @Test
     public void whenAverageScore() {
         double average = AnalyzeByMap.averageScore(
