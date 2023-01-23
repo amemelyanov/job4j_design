@@ -50,8 +50,8 @@ public class SimpleArray<T> implements Iterable<T> {
     @Override
     public Iterator<T> iterator() {
         return new Iterator<T>() {
-            int point = 0;
-            final int expectedModCount = modCount;
+            private int point = 0;
+            private final int expectedModCount = modCount;
 
             @Override
             public boolean hasNext() {

@@ -40,8 +40,8 @@ public class SimpleLinkedList<E> implements List<E> {
     @Override
     public Iterator<E> iterator() {
         return new Iterator<E>() {
-            Node<E> current = first;
-            final int expectedModCount = modCount;
+            private Node<E> current = first;
+            private final int expectedModCount = modCount;
 
             @Override
             public boolean hasNext() {
@@ -64,9 +64,9 @@ public class SimpleLinkedList<E> implements List<E> {
     }
 
     private static class Node<E> {
-        E item;
-        Node<E> next;
-        Node<E> prev;
+        private E item;
+        private Node<E> next;
+        private Node<E> prev;
 
         Node(Node<E> prev, E element, Node<E> next) {
             this.item = element;

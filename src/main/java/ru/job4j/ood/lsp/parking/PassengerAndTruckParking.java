@@ -1,8 +1,8 @@
 package ru.job4j.ood.lsp.parking;
 
 public class PassengerAndTruckParking implements CarTruckParking {
-    PassengerParkingPlaces passengerParkingPlaces;
-    TruckParkingPlaces truckParkingPlaces;
+    private PassengerParkingPlaces passengerParkingPlaces;
+    private TruckParkingPlaces truckParkingPlaces;
 
     public PassengerAndTruckParking(int truckNumberPlaces, int passengerNumberPlaces) {
         truckParkingPlaces = new TruckParkingPlaces(truckNumberPlaces);

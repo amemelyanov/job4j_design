@@ -101,8 +101,10 @@ public class ReportEngineTest {
         StringBuilder expect = new StringBuilder()
                 .append("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>")
                 .append("<employee name=\"").append(worker.getName()).append("\" ")
-                .append("hired=\"").append(cFormatter.format(worker.getHired().getTime())).append("\" ")
-                .append("fired=\"").append(cFormatter.format(worker.getFired().getTime())).append("\" ")
+                .append("hired=\"").append(cFormatter.format(
+                        worker.getHired().getTime())).append("\" ")
+                .append("fired=\"").append(cFormatter.format(
+                        worker.getFired().getTime())).append("\" ")
                 .append("salary=\"").append(worker.getSalary()).append("\"/>");
         assertThat(report.generate(em -> true, store), is(expect.toString()));
     }

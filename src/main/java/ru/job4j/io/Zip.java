@@ -10,10 +10,12 @@ import java.util.zip.ZipOutputStream;
 public class Zip {
 
     public void packFiles(List<Path> sources, File target) {
-        try (ZipOutputStream zip = new ZipOutputStream(new BufferedOutputStream(new FileOutputStream(target)))) {
+        try (ZipOutputStream zip = new ZipOutputStream(
+                new BufferedOutputStream(new FileOutputStream(target)))) {
             for (Path source : sources) {
                 zip.putNextEntry(new ZipEntry(source.toFile().getPath()));
-                try (BufferedInputStream out = new BufferedInputStream(new FileInputStream(source.toFile()))) {
+                try (BufferedInputStream out = new BufferedInputStream(
+                        new FileInputStream(source.toFile()))) {
                     zip.write(out.readAllBytes());
                 }
             }
@@ -23,7 +25,8 @@ public class Zip {
     }
 
         public void packSingleFile(File source, File target) {
-        try (ZipOutputStream zip = new ZipOutputStream(new BufferedOutputStream(new FileOutputStream(target)))) {
+        try (ZipOutputStream zip = new ZipOutputStream(
+                new BufferedOutputStream(new FileOutputStream(target)))) {
             zip.putNextEntry(new ZipEntry(source.getPath()));
             try (BufferedInputStream out = new BufferedInputStream(new FileInputStream(source))) {
                 zip.write(out.readAllBytes());
@@ -38,6 +41,8 @@ public class Zip {
         Zip zip = new Zip();
         Path root = Paths.get(argsName.get("d"));
         File target = new File(argsName.get("o"));
-        zip.packFiles(Search.search(root, p -> !p.toFile().getName().endsWith(argsName.get("e"))), target);
+        zip.packFiles(Search.search(root, p -> !p.toFile()
+                .getName()
+                .endsWith(argsName.get("e"))), target);
     }
 }

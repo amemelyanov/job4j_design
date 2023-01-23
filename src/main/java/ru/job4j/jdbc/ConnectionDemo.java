@@ -9,7 +9,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConnectionDemo {
-    public static void main(String[] args) throws ClassNotFoundException, SQLException, IOException {
+    public static void main(String[] args)
+            throws ClassNotFoundException, SQLException, IOException {
         Settings settings = new Settings();
         File file = new File("./app.properties");
         try (FileInputStream io = new FileInputStream(file)) {

@@ -5,7 +5,7 @@ import ru.job4j.collection.list.List;
 import java.util.Map;
 
 public class ProductStore {
-    Map<Product, Integer> stock;
+    private Map<Product, Integer> stock;
 
     public ProductStore(Map<Product, Integer> stock) {
         this.stock = stock;

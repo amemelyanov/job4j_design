@@ -2,8 +2,8 @@ package ru.job4j.ood.ocp;
 
 public class AbstractBeing {
     private static class Bird {
-        String name;
-        int beakLength;
+        private String name;
+        private int beakLength;
 
         public Bird(String name, int beakLength) {
             this.name = name;

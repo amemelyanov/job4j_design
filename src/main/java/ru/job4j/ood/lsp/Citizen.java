@@ -1,11 +1,28 @@
 package ru.job4j.ood.lsp;
 
 public class Citizen {
-    protected String name;
-    protected int age;
+    private  String name;
+
+    private  int age;
 
     public Citizen(String name, int age) {
         this.name = name;
+        this.age = age;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
         this.age = age;
     }
 
@@ -18,7 +35,7 @@ public class Citizen {
 }
 
 class AmericanCitizen extends Citizen {
-    int id;
+    private int id;
 
     public AmericanCitizen(String name, int age, int id) {
         super(name, age);
@@ -27,7 +44,7 @@ class AmericanCitizen extends Citizen {
 
     @Override
     public void vote() {
-        if (age < 21) {
+        if (getAge() < 21) {
             throw new IllegalArgumentException("Invalid age!");
         }
         System.out.println("Vote");

@@ -25,7 +25,8 @@ public class UsageLog4j {
                 + "float six    : {}{}"
                 + "double seven : {}{}"
                 + "double seven : {}",
-                sls, one, sls, two, sls, three, sls, four, sls, five, sls, six, sls, seven, sls, eight);
+                sls, one, sls, two, sls, three, sls, four, sls, five,
+                sls, six, sls, seven, sls, eight);
 
     }
 }

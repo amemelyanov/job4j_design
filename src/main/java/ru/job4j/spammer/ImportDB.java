@@ -40,7 +40,8 @@ public class ImportDB {
                 cfg.getProperty("jdbc.password")
         )) {
             for (User user : users) {
-                try (PreparedStatement ps = cnt.prepareStatement("insert into users(name, email) values (?, ?)")) {
+                try (PreparedStatement ps = cnt.prepareStatement(
+                        "insert into users(name, email) values (?, ?)")) {
                     ps.setString(1, user.name);
                     ps.setString(2, user.email);
                     ps.execute();
@@ -50,8 +51,8 @@ public class ImportDB {
     }
 
     private static class User {
-        String name;
-        String email;
+        private String name;
+        private String email;
 
         public User(String name, String email) {
             this.name = name;

@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.regex.Pattern;
 
-
 public class Find {
 
     public static Predicate<Path> getSearchCondition(ArgsNames args) {

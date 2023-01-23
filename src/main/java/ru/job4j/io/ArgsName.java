@@ -46,7 +46,8 @@ public class ArgsName {
         ArgsName zip = ArgsName.of(new String[] {"-out=project.zip", "-encoding=UTF-8"});
         System.out.println(zip.get("out"));
 
-        ArgsName jar = ArgsName.of(new String[] {"-jar", "pack.jar", "-out=project.zip", "-encoding=UTF-8"});
+        ArgsName jar = ArgsName.of(new String[] {"-jar", "pack.jar", "-out=project.zip",
+                "-encoding=UTF-8"});
         System.out.println(zip.get("out"));
     }
 }

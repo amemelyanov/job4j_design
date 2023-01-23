@@ -65,7 +65,7 @@ public class ControlQualityTest {
                 new GregorianCalendar(2021, Calendar.MAY, 7).getTime(),
                 70, 15, "ham", 3);
         controlQuality.control(meat);
-        meat.price = meat.price * (100 - meat.discount) / 100;
+        meat.setPrice(meat.getPrice() * (100 - meat.getDiscount()) / 100);
         expected.add(meat);
         assertThat(shop.getStorageList(), is(expected));
     }

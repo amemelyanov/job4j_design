@@ -1,7 +1,7 @@
 package ru.job4j.ood.dip;
 
 public class Hire {
-    Car car;
+    private Car car;
 
     public Hire(Car car) {
         this.car = car;
@@ -13,7 +13,7 @@ public class Hire {
 }
 
 class Car {
-    String model;
+    private String model;
 
     public Car(String model) {
         this.model = model;

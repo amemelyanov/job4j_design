@@ -19,7 +19,8 @@ public class CSVReader {
         return result;
     }
 
-    private static String getResultStringFromList(List<Integer> indexes, List<String> line, String delimiter) {
+    private static String getResultStringFromList(List<Integer> indexes, List<String> line,
+                                                  String delimiter) {
         List<String> resultLine = new ArrayList<>();
         for (Integer index : indexes) {
             resultLine.add(line.get(index));
@@ -27,7 +28,8 @@ public class CSVReader {
         return String.join(delimiter, resultLine);
     }
 
-    private static List<String> getDataFromScanner(String path, String[] filter, String delimiter) throws FileNotFoundException {
+    private static List<String> getDataFromScanner(String path, String[] filter,
+                                                   String delimiter) throws FileNotFoundException {
         List<String> line;
         List<String> data = new ArrayList<>();
         List<Integer> indexes;

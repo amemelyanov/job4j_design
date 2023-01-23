@@ -14,7 +14,8 @@ public class Search {
         String path = args[0];
         String fileExtension = args[1];
         Path start = Paths.get(path);
-        search(start, p -> p.toFile().getName().endsWith(fileExtension)).forEach(System.out::println);
+        search(start, p -> p.toFile().getName().endsWith(fileExtension))
+                .forEach(System.out::println);
     }
 
     public static List<Path> search(Path root, Predicate<Path> condition) throws IOException {

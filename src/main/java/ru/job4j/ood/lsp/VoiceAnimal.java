@@ -15,11 +15,11 @@ class Animal {
 }
 
 class Cat extends Animal {
-    String sound = "Meo meo";
+    private String sound = "Meo meo";
 }
 
 class Dog extends Animal {
-    String sound = "Gav gav";
+    private String sound = "Gav gav";
 }
 
 class TestVoiceAnimal {

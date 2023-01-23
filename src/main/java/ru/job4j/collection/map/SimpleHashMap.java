@@ -92,8 +92,8 @@ public class SimpleHashMap<K, V> implements Map<K, V> {
     @Override
     public Iterator<Node<K, V>> iterator() {
         return new Iterator<>() {
-            final int expectedModCount = modCount;
-            int point;
+            private final int expectedModCount = modCount;
+            private int point;
 
             @Override
             public boolean hasNext() {
@@ -114,9 +114,10 @@ public class SimpleHashMap<K, V> implements Map<K, V> {
             }
         };
     }
+
     public static class Node<K, V> {
-        final int hash;
-        final K key;
+        private final int hash;
+        private final K key;
         private V value;
 
         public Node(int hash, K key, V value) {

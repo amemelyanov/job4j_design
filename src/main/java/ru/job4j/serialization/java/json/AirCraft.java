@@ -33,6 +33,17 @@ public class AirCraft {
     @XmlElement(name = "subModel")
     private String[] subModels;
 
+    public AirCraft() { }
+
+    public AirCraft(boolean isPassenger, int rangeOfFlight, String modelName,
+                    Engine engine, String[] subModels) {
+        this.isPassenger = isPassenger;
+        this.rangeOfFlight = rangeOfFlight;
+        this.modelName = modelName;
+        this.engine = engine;
+        this.subModels = subModels;
+    }
+
     public boolean isPassenger() {
         return isPassenger;
     }
@@ -53,16 +64,6 @@ public class AirCraft {
         return subModels;
     }
 
-    public AirCraft() { }
-
-    public AirCraft(boolean isPassenger, int rangeOfFlight, String modelName, Engine engine, String[] subModels) {
-        this.isPassenger = isPassenger;
-        this.rangeOfFlight = rangeOfFlight;
-        this.modelName = modelName;
-        this.engine = engine;
-        this.subModels = subModels;
-    }
-
     @Override
     public String toString() {
         return "AirCraft{"
@@ -81,19 +82,19 @@ public class AirCraft {
         @XmlAttribute
         private int horsePower;
 
+        public Engine() { }
+
+        public Engine(String name, int horsePower) {
+            this.name = name;
+            this.horsePower = horsePower;
+        }
+
         public String getName() {
             return name;
         }
 
         public int getHorsePower() {
             return horsePower;
-        }
-
-        public Engine() { }
-
-        public Engine(String name, int horsePower) {
-            this.name = name;
-            this.horsePower = horsePower;
         }
 
         @Override

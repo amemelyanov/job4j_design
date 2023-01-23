@@ -6,7 +6,6 @@ public class SimpleQueue<T> {
     private int sizeIn;
     private int sizeOut;
 
-
     public T poll() {
         if (sizeOut == 0) {
             while (sizeIn != 0) {

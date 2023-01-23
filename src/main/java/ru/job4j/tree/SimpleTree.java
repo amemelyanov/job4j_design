@@ -10,6 +10,10 @@ class SimpleTree<E> implements Tree<E> {
         this.root = new Node<>(root);
     }
 
+    public Node<E> getRoot() {
+        return root;
+    }
+
     @Override
     public boolean add(E parent, E child) {
         boolean rsl = false;
@@ -17,7 +21,7 @@ class SimpleTree<E> implements Tree<E> {
         if (opt.isPresent()) {
             Node<E> node = opt.get();
             if (findBy(child).isEmpty()) {
-                node.children.add(new Node<>(child));
+                node.getChildren().add(new Node<>(child));
                 rsl = true;
             }
         }
@@ -34,18 +38,18 @@ class SimpleTree<E> implements Tree<E> {
                 rsl = Optional.of(el);
                 break;
             }
-            data.addAll(el.children);
+            data.addAll(el.getChildren());
         }
         return rsl;
     }
 
     @Override
     public boolean isBinary() {
-        return findByPredicate(eNode -> eNode.children.size() > 2).isEmpty();
+        return findByPredicate(eNode -> eNode.getChildren().size() > 2).isEmpty();
     }
 
     @Override
     public Optional<Node<E>> findBy(E value) {
-        return findByPredicate(eNode -> eNode.value.equals(value));
+        return findByPredicate(eNode -> eNode.getValue().equals(value));
     }
 }

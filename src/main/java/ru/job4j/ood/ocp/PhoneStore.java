@@ -3,7 +3,7 @@ package ru.job4j.ood.ocp;
 import java.util.List;
 
 public class PhoneStore {
-    List<Phone> phones;
+    private List<Phone> phones;
 
     public PhoneStore(List<Phone> phones) {
         this.phones = phones;
@@ -23,6 +23,7 @@ public class PhoneStore {
 class Phone {
     private final String name;
     private int price;
+
     public Phone(String name) {
         this.name = name;
     }

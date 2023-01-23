@@ -53,7 +53,8 @@ public class PasswordValidatorTest {
         assertThatThrownBy(() ->
             PasswordValidator.validate(password))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("Пароль должен содержать хотя бы один символ в верхнем регистре");
+                .hasMessageContaining(
+                        "Пароль должен содержать хотя бы один символ в верхнем регистре");
     }
 
     @Test
@@ -72,7 +73,8 @@ public class PasswordValidatorTest {
         assertThatThrownBy(() ->
                 PasswordValidator.validate(password))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("Пароль должен содержать хотя бы один символ в нижнем регистре");
+                .hasMessageContaining(
+                        "Пароль должен содержать хотя бы один символ в нижнем регистре");
     }
 
     @Test
@@ -91,7 +93,8 @@ public class PasswordValidatorTest {
         assertThatThrownBy(() ->
                 PasswordValidator.validate(password))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("Пароль должен содержать хотя бы одну цифру");
+                .hasMessageContaining(
+                        "Пароль должен содержать хотя бы одну цифру");
     }
 
     @Test
@@ -110,7 +113,8 @@ public class PasswordValidatorTest {
         assertThatThrownBy(() ->
                 PasswordValidator.validate(password))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("Пароль должен содержать хотя бы один спец. символ (не цифра и не буква)");
+                .hasMessageContaining(
+                        "Пароль должен содержать хотя бы один спец. символ (не цифра и не буква)");
     }
 
     @Test
@@ -120,7 +124,9 @@ public class PasswordValidatorTest {
         assertThatThrownBy(() ->
                 PasswordValidator.validate(password))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("Пароль не должен содержать подстроки: qwerty, 12345, password, admin, user");
+                .hasMessageContaining(
+                        "Пароль не должен содержать подстроки: qwerty, "
+                                + "12345, password, admin, user");
     }
 
     @Test
@@ -131,7 +137,4 @@ public class PasswordValidatorTest {
         String result = PasswordValidator.validate(password);
         assertThat(result).isEqualTo(expected);
     }
-
-
-
 }

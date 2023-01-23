@@ -8,7 +8,7 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
 
 public class UserStoreTest {
-    UserStore userStore = new UserStore();
+    private UserStore userStore = new UserStore();
 
     @Before
     public void setUp() {
@@ -58,6 +58,7 @@ public class UserStoreTest {
         assertThat(userStore.findById("id3"), is(user3));
         assertNull(userStore.findById("id4"));
     }
+
     @Test
     public void testFindIndexById() {
         UserStore userStore = new UserStore();

@@ -5,8 +5,8 @@ import java.io.FileOutputStream;
 import java.io.PrintWriter;
 
 public class Text {
-    String text;
-    TextToFile textToFile;
+    private String text;
+    private TextToFile textToFile;
 
     public Text(String text, TextToFile textToFile) {
         this.text = text;

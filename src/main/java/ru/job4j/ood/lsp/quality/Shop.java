@@ -11,13 +11,21 @@ public class Shop implements Storage {
         listShop = new ArrayList<>();
     }
 
+    public List<Food> getListShop() {
+        return listShop;
+    }
+
+    public void setListShop(List<Food> listShop) {
+        this.listShop = listShop;
+    }
+
     @Override
     public void add(Food food) {
         double levelOfQuality = getLevelOfQuality(food);
         if (levelOfQuality >= 25 && levelOfQuality <= 75) {
             listShop.add(food);
         } else if (levelOfQuality > 75 && levelOfQuality <= 100) {
-            food.price = food.price * (100 - food.discount) / 100;
+            food.setPrice(food.getPrice() * (100 - food.getDiscount()) / 100);
             listShop.add(food);
         }
     }
@@ -29,11 +37,13 @@ public class Shop implements Storage {
     }
 
     private double getLevelOfQuality(Food food) {
-        long totalLifeInDays = (food.expiryDate.getTime() - food.createDate.getTime()) / 1000 / 60 / 60 / 24;
+        long totalLifeInDays = (food.getExpiryDate().getTime()
+                - food.getCreateDate().getTime()) / 1000 / 60 / 60 / 24;
         if (totalLifeInDays < 0) {
             throw new IllegalArgumentException("Check date of food in " + food);
         }
-        long daysFromCreate = (new Date().getTime() - food.createDate.getTime()) / 1000 / 60 / 60 / 24;
+        long daysFromCreate = (new Date().getTime()
+                - food.getCreateDate().getTime()) / 1000 / 60 / 60 / 24;
         return (double) daysFromCreate / totalLifeInDays * 100;
     }
 

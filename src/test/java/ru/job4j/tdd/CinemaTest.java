@@ -37,7 +37,6 @@ public class CinemaTest {
         assertEquals(sessions.size(), 0);
     }
 
-
     @Test
     public void add() {
         Cinema cinema = new Cinema3D();
