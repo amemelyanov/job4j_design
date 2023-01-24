@@ -3,10 +3,13 @@ package ru.job4j.jdbc;
 public class City {
 
     private int id;
-
     private String name;
-
     private int population;
+
+    public City(String name, int population) {
+        this.name = name;
+        this.population = population;
+    }
 
     public City(int id, String name, int population) {
         this.id = id;
@@ -40,10 +43,7 @@ public class City {
 
     @Override
     public String toString() {
-        return "City{"
-                + "id=" + id
-                + ", name='" + name + '\''
-                + ", population=" + population
-                + '}';
+        return String.format("City{id= %s, name= %s, population= %s}",
+                id, name, population);
     }
 }
