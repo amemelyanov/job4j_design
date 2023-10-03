@@ -15,18 +15,21 @@ public class NonNullIterator implements Iterator<Integer> {
 
     @Override
     public boolean hasNext() {
-        return IntStream.range(index, data.length)
-                .filter(i -> data[i] != null)
-                .findFirst().isPresent();
+        boolean hasNonNull = false;
+        for (int i = index; i < data.length; i++) {
+            if (data[i] != null) {
+                hasNonNull = true;
+                index = i;
+                break;
+            }
+        }
+        return hasNonNull;
     }
 
     @Override
     public Integer next() {
         if (!hasNext()) {
             throw new NoSuchElementException("No such element");
-        }
-        while (data[index] == null) {
-            index++;
         }
         return data[index++];
     }
